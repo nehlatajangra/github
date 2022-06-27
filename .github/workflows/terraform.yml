@@ -43,7 +43,7 @@ jobs:
     - name: tf-plan
       id: plan
       run: 
-        terraform plan -no-color
+        terraform plan 
 
     - name: tf-apply
       id: apply
