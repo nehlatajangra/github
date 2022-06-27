@@ -11,7 +11,7 @@ env:
   DB_TABLE: NehLata-table
 
 jobs:
-  terraform-apply:
+  terraform:
     runs-on: ubuntu-latest
 
     defaults:
