@@ -38,7 +38,7 @@ jobs:
     - name: terraform plan
       id: plan
       run:
-         terraform plan
+         terraform plan -var-file="terraform.tfvars"
 
     - name: terraform Apply
       id: apply
