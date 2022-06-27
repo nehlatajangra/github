@@ -15,7 +15,7 @@ jobs:
       AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}}
       # AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjELn//////////wEaCXVzLXdlc3QtMiJHMEUCIQDuhM+jFWCjDbaSYaz9GyciqBYMrfZXB/8u4bzGPS8+FwIganJd5k4bvPvYp+Zml7nMLjY19uFL+GvP3CJ9wmHPX1cqmwMI0v//////////ARAAGgw1Mjg1MTkyMDUwMjAiDPmjIOjOlpDXwmbDuyrvAujU2x6Qps9XooqSfLfFGudT5Nk8kAgDJJSIznl1EisW/hI/1Oa7yO5FHBx47lf/hN2rjCcmTUDQyBj6xq6m6UHz8Kql6R6R5vMrDtfEez9BkQ63qdRy8gcf1EQBHysTNTu+QZqHRUctC7+cl1gUEtfif6wYj3yVlAamDt+pw2aduFa1144FZhFWM0Nxzj8KoU4RTr2Va40o1ZiRVWiVOt/8DNQy32fxu7k2X+emrsd6bl+4JlixzMEQsvQ+2b+g+ueHIPt/Z6XUta0jTqbCzIa2AOmvVz693C/M2Zqj2fi00N7JCd6fJycqdkajty+6tARkyz4Mm0kgtbVrtbtREDbvpl79s+0tRYD2+ti0gokekL+gbmWrTK2ledYK5JDwfKSM09Ucf8KaygdiGqq3Xj8HpJaAeHT2z4A+jRR1l1N3Tow6tADYw5O/5iVg+tGr3EC2yttYhj8g6wLqtpIy5Vy8mG0xykMO9ARWinnk2H8wn+HllQY6pgGlW+rV7mvqdI3c4UBPzOQHm2V0v5nhFUl637gMEyMgYLhZbryhd8DHapOmGfILmdMZ1w1ln6SpC/IaXNfRear4mj/5lFthUH+0iRenIpZpu/kPig9UvJdUROYZBq0kXo5399N26bQSzSsChv0pIqq5/H6QLLkMOXr8iy5IYkLBR83R1Nie93IlfNaiQ3TjWnRfHwV/gG5oMEZ0opoxIpG/lf7isEnL"
-      AWS_DEFAULT_REGION: us-east-2
+      AWS_DEFAULT_REGION: us-east-1
     steps:
       - uses: actions.checkout@v3
       - uses: hashicorp/setup-terraform@v1
