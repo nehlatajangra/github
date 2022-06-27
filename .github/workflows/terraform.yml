@@ -35,15 +35,17 @@ jobs:
     - name: tf-init
       id: init
       run:
+        rm -rf .terraform
         terraform init -reconfigure
        -backend-config="bucket=$BUCKET" 
        -backend-config="key=$TFSTATE_FILE" 
        -backend-config="dynamodb_table=$DB_TABLE"
+       
+       
 
     - name: tf-plan
       id: plan
       run: 
-        working-directory: test
         terraform plan 
 
     - name: tf-apply
