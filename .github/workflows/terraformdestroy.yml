@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  terraform:
+   terraform:
     name: Terraform
     runs-on: ubuntu-latest
 
@@ -28,16 +28,7 @@ jobs:
          terraform init -backend-config-config.remote
 
 
-      - name: terraform plan
-        id: plan
-        run:
-         terraform plan
-
-      - name: terraform Apply
-        id: apply
-        run:
-         terraform apply -auto-approve
-
-   
-
-
+      - name: Terraform Destroy
+        id: destroy
+        run: 
+         terraform destroy -auto-approve 
