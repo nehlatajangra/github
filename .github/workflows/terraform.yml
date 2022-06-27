@@ -6,6 +6,10 @@ on:
     branches:
     - "main"
   pull_request:
+env:
+ AWS_ACCESS_KEY_ID=${{}}
+ AWS_SECRET_ACCESS_KEY=${{}}
+ AWS_REGION="us-west-1"
 
 permissions:
   contents: read
