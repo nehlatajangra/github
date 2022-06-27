@@ -43,6 +43,7 @@ jobs:
     - name: tf-plan
       id: plan
       run: 
+        working-directory: test
         terraform plan 
 
     - name: tf-apply
