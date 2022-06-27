@@ -59,7 +59,7 @@ name: 'Terrform'
 on: 
   push: 
     branches :
-    - master
+    - main
 
 jobs:
   terraform:
