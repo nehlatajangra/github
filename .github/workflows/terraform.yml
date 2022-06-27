@@ -28,9 +28,9 @@ jobs:
       run: 
         terraform init -reconfigure
         -backend-config="bucket = "s3-for-assignment""
-        -backend-config="key="terraform.tfstate"""
+        -backend-config="key="terraform.tfstate""
         -backend-config="dynamodb_table = "NehLata-table""
-        # -backend-config="encrypt=true"
+        -backend-config="encrypt=true"
         #  rm -rf .terraform
         #  terraform init -backend-config-config.remote
 
