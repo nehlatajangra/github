@@ -16,8 +16,7 @@ jobs:
 
     defaults:
       run:
-        cmd:
-          cd test
+        cd test
 
     steps:
     - uses: actions/checkout@v3
