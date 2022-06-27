@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
 
-    # defaults:
-    #   run:
-    #     working-directory: test
+    defaults:
+      run:
+        working-directory: test
 
     steps:
     - uses: actions/checkout@v3
@@ -35,18 +35,15 @@ jobs:
     - name: tf-init
       id: init
       run:
-        rm -rf .terraform
         terraform init -reconfigure
        -backend-config="bucket=$BUCKET" 
        -backend-config="key=$TFSTATE_FILE" 
        -backend-config="dynamodb_table=$DB_TABLE"
-       
-       
 
     - name: tf-plan
       id: plan
       run: 
-        terraform plan 
+        terraform plan -no-color
 
     - name: tf-apply
       id: apply
