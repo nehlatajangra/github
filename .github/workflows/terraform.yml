@@ -40,6 +40,9 @@ jobs:
        -backend-config="key=$TFSTATE_FILE" 
        -backend-config="dynamodb_table=$DB_TABLE"
 
+      run: 
+        working-directory: ./test
+
     - name: tf-plan
       id: plan
       run: 
