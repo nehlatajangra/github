@@ -7,8 +7,8 @@ on:
 
 
 jobs:
-  terraform:
-    name: Terraform
+  Terraform:
+    name: terraform
     runs-on: ubuntu-latest
 
     env:
