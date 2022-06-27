@@ -1,107 +1,43 @@
-
-# name: 'Terraform'
-
-# on:
-#   push:
-#     branches:
-#     - "main"
-#   pull_request:
-# env:
-#  aws_access_key_id=${{secrets.AWS_ACCESS_KEY_ID}}
-#  aws_secret_access_key=${{secrets.AWS_SECRET_ACCESS_KEY}}
-#  aws_region="us-east-1"
-
-
-
-# jobs:
-#   terraform:
-#     name: 'Terraform'
-#     runs-on: ubuntu-latest
-#     environment: production
-    
-
-#     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-#     defaults:
-#       run:
-#         shell: bash
-
-#     steps:
-#     # Checkout the repository to the GitHub Actions runner
-#     - name: Checkout
-#       uses: actions/checkout@v3
-
-#     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-#     - name: Setup Terraform
-#       uses: hashicorp/setup-terraform@v1
-#       with:
-#         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-#     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-#     - name: Terraform Init
-#       run: terraform init
-
-#     # Checks that all Terraform configuration files adhere to a canonical format
-#     - name: Terraform Format
-#       run: terraform fmt -check
-
-#     # Generates an execution plan for Terraform
-#     - name: Terraform Plan
-#       run: terraform plan -input=false
-
-#       # On push to "main", build or change infrastructure according to Terraform configuration files
-#       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-#     - name: Terraform Apply
-#       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-#       run: terraform apply -auto-approve -input=false
-
-name: 'Terrform'
+name: terraform Deploy
 
 on: 
+  workflow_dispatch: 
   push: 
-    branches :
-    - main
+    branches: ["main"]
+
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: terraform
     runs-on: ubuntu-latest
 
+    env:
+      AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}}
+      # AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjELn//////////wEaCXVzLXdlc3QtMiJHMEUCIQDuhM+jFWCjDbaSYaz9GyciqBYMrfZXB/8u4bzGPS8+FwIganJd5k4bvPvYp+Zml7nMLjY19uFL+GvP3CJ9wmHPX1cqmwMI0v//////////ARAAGgw1Mjg1MTkyMDUwMjAiDPmjIOjOlpDXwmbDuyrvAujU2x6Qps9XooqSfLfFGudT5Nk8kAgDJJSIznl1EisW/hI/1Oa7yO5FHBx47lf/hN2rjCcmTUDQyBj6xq6m6UHz8Kql6R6R5vMrDtfEez9BkQ63qdRy8gcf1EQBHysTNTu+QZqHRUctC7+cl1gUEtfif6wYj3yVlAamDt+pw2aduFa1144FZhFWM0Nxzj8KoU4RTr2Va40o1ZiRVWiVOt/8DNQy32fxu7k2X+emrsd6bl+4JlixzMEQsvQ+2b+g+ueHIPt/Z6XUta0jTqbCzIa2AOmvVz693C/M2Zqj2fi00N7JCd6fJycqdkajty+6tARkyz4Mm0kgtbVrtbtREDbvpl79s+0tRYD2+ti0gokekL+gbmWrTK2ledYK5JDwfKSM09Ucf8KaygdiGqq3Xj8HpJaAeHT2z4A+jRR1l1N3Tow6tADYw5O/5iVg+tGr3EC2yttYhj8g6wLqtpIy5Vy8mG0xykMO9ARWinnk2H8wn+HllQY6pgGlW+rV7mvqdI3c4UBPzOQHm2V0v5nhFUl637gMEyMgYLhZbryhd8DHapOmGfILmdMZ1w1ln6SpC/IaXNfRear4mj/5lFthUH+0iRenIpZpu/kPig9UvJdUROYZBq0kXo5399N26bQSzSsChv0pIqq5/H6QLLkMOXr8iy5IYkLBR83R1Nie93IlfNaiQ3TjWnRfHwV/gG5oMEZ0opoxIpG/lf7isEnL"
+      AWS_DEFAULT_REGION: us-east-2
     steps:
-    - uses: actions/checkout@v3
-    - uses: hashicorp/setup-terraform@v2
+      -uses: actions.checkout@v3
+      -uses: hashicorp/setup-terraform@v1
+       with:
+        terraform_wrapper: false
+      -name: Terraform Init
+       id: init
+       run: 
+        rm -rf .terraform
+        terraform init -backend-config-config.remote
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} add token in secrets
-        aws-region: us-east-1
-        # role-to-assume: my-github-actions-role
-        # role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-        # role-duration-seconds: 1200
-        # role-session-name: MySessionName
 
-        
+      -name: terraform plan
+       id: plan
+       run:
+        terraform plan
 
-    - run: terraform init
+      -name: terraform Apply
+       id: apply
+       run:
+        terraform apply -auto-approve
 
-    - id: plan
-      run: terraform plan -no-color
 
-    - run: echo ${{ steps.plan.outputs.stdout }}
-    - run: echo ${{ steps.plan.outputs.stderr }}
-    - run: echo ${{ steps.plan.outputs.exitcode }}
 
-    # - uses: actions/github-script@v6
-    #   if: github.event_name == 'pull_request'
-    #   env:
-    #     PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-    #   # with:
-    #   #   github-token: ${{ secrets.GITHUB_TOKEN }}
-    #     script: |
-    #       github.rest.issues.createComment({
-    #         issue_number: context.issue.number,
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         body: outp
+
