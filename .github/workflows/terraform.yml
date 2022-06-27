@@ -22,7 +22,7 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} add token in secrets
         aws-region: us-east-1
 
-        #  terraform_wrapper: false
+      #  terraform_wrapper: false
     - name: Terraform Init
       id: init
       run: 
