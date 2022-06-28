@@ -1,7 +1,6 @@
 name: 'Terraform-apply'
 
 on: 
-  workflow_dispatch:
   push: 
     branches :
     - main
@@ -11,14 +10,13 @@ env:
   TFSTATE_FILE: terraform.tfstate
   DB_TABLE: NehLata-table
 
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
 
     defaults:
       run:
-        working-directory: ./module/test
+        working-directory: ./terraform/test
 
     steps:
     - uses: actions/checkout@v3
