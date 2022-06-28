@@ -8,7 +8,7 @@ on:
 env:
   BUCKET: s3-for-assignment
   TFSTATE_FILE: terraform.tfstate
-  DB_TABLE: NehLata-table
+  DB_TABLE: nehlata-table
 
 jobs:
   terraform:
