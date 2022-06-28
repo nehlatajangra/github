@@ -2,6 +2,7 @@ name: 'Terraform-destroy'
 
 on: 
   workflow_dispatch:
+    
 
 env:
   BUCKET: s3-for-assignment
