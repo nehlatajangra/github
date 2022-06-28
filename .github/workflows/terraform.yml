@@ -5,7 +5,6 @@ on:
   push: 
     branches :
     - main
-
 env:
   BUCKET: s3-for-assignment
   TFSTATE_FILE: terraform.tfstate
