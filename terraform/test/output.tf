@@ -1,5 +1,7 @@
-output "vpc" {
-  value = {for k,v in module.new-vpc:k=>v}
-}
-  
 
+output "name" {
+  value = "${module.new-bucket.bucket_id}"
+}
+output "ac" {
+  value = "${module.new-bucket.acl}"
+}

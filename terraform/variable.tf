@@ -1,16 +1,13 @@
-variable "subnet_cidr" {
-  type=string
-  #default = "10.0.0.0/24"
+variable "bucket_name" {
+    type = string
 }
-variable "availability_zone" {
-  type=string
-  #default = "us-east-1a"
+variable "name" {
+    type=string
 }
-variable "vpc_cidr" {
+variable "Environment" {
   type=string
-  #default = "10.0.0.0/16"
 }
-variable "vpc_enable_dns" {
-  type=bool
-  #default = true
+
+variable "acl" {
+    type=string 
 }
