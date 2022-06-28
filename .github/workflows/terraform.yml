@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./terraform/test
+        working-directory: ./terraform/module
 
 
     steps:
