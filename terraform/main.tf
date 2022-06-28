@@ -1,5 +1,5 @@
 module "new-vpc" {
-  source="/module"
+  source="./module"
   vpc_cidr="${var.vpc_cidr}"
   vpc_enable_dns="${var.vpc_enable_dns}"
   for_each = var.subnet_cidr
