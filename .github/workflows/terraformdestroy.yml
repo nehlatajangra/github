@@ -12,6 +12,7 @@ jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
 
+
     defaults:
       run:
         working-directory: ./module/test
