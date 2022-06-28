@@ -51,10 +51,10 @@ jobs:
     #   run: 
     #     terraform plan -no-color
 
-    - name: tf-apply
-      id: apply
-      run:
-        terraform apply -auto-approve
+    # - name: tf-apply
+    #   id: apply
+    #   run:
+    #     terraform apply -auto-approve
 # name: 'Terrform'
 
 # on: 
