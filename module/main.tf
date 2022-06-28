@@ -17,31 +17,31 @@ resource "aws_subnet" "public" {
   }
 }
 
-# resource "aws_internet_gateway" "my_vpc_igw" {
-#   vpc_id = aws_vpc.my_vpc.id
+resource "aws_internet_gateway" "my_vpc_igw" {
+  vpc_id = aws_vpc.my_vpc.id
 
-#   tags = {
-#     Name = "My VPC - Internet Gateway"
-#   }
-# }
+  tags = {
+    Name = "My VPC - Internet Gateway"
+  }
+}
 
-# resource "aws_route_table" "my_vpc_us_east_1a_public" {
-#     vpc_id = aws_vpc.my_vpc.id
+resource "aws_route_table" "my_vpc_us_east_1a_public" {
+    vpc_id = aws_vpc.my_vpc.id
 
-#     route {
-#         cidr_block = "0.0.0.0/0"
-#         gateway_id = aws_internet_gateway.my_vpc_igw.id
-#     }
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.my_vpc_igw.id
+    }
 
-#     tags = {
-#         Name = "Public Subnet Route Table."
-#     }
-# }
+    tags = {
+        Name = "Public Subnet Route Table."
+    }
+}
 
-# resource "aws_route_table_association" "my_vpc_us_east_1a_public" {
-#     subnet_id = aws_subnet.public.id
-#     route_table_id = aws_route_table.my_vpc_us_east_1a_public.id
-# }
+resource "aws_route_table_association" "my_vpc_us_east_1a_public" {
+    subnet_id = aws_subnet.public.id
+    route_table_id = aws_route_table.my_vpc_us_east_1a_public.id
+}
 
 resource "aws_security_group" "sg" {
   name        = "allow_sg"
