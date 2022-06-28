@@ -1,16 +1,21 @@
+
 variable "subnet_cidr" {
-  type=string
-  #default = "10.0.0.0/24"
+  type=map(string)
+  description = "subnet cidr for vpc"
+  sensitive = false
 }
 variable "availability_zone" {
   type=string
-  #default = "us-east-1a"
+  description = "availability zone for subnet"
+  sensitive = false
 }
 variable "vpc_cidr" {
   type=string
-  #default = "10.0.0.0/16"
+  description = "vpc cidr value"
+  sensitive = false
 }
 variable "vpc_enable_dns" {
   type=bool
-  #default = true
+  description = "enable_dns_hostnames permission "
+  sensitive = false
 }

@@ -1,12 +1,5 @@
-output "vpc_id" {
-  value="${aws_vpc.my_vpc.id}"
+output "vpc" {
+  value = {for k,v in module.new-vpc:k=>v}
 }
-output "cidr_block" {
-  value="${var.vpc_cidr}"
-}
-output "availability_zone" {
-  value="${var.availability_zone}"
-}
-output "subnet_cidr" {
-  value="${var.subnet_cidr}"
-}
+  
+
