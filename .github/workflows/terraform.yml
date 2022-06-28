@@ -31,7 +31,7 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} 
         aws-region: us-east-1      
 
-    - name: tf-init
+    - name: terraform-init
       id: init
       run:
         terraform init -reconfigure
@@ -39,102 +39,12 @@ jobs:
        -backend-config="key=$TFSTATE_FILE" 
        -backend-config="dynamodb_table=$DB_TABLE"
 
-      
-
-    - name: tf-plan
+    - name: terraform-plan
       id: plan
       run: 
         terraform plan -no-color
 
-    - name: tf-apply
+    - name: terraform-apply
       id: apply
       run:
         terraform apply -auto-approve
-# name: 'Terrform'
-
-# on: 
-#   push: 
-#     branches :
-#     - main
-
-# jobs:
-#   terraform:
-#     name: 'Terraform'
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v3
-#     - uses: hashicorp/setup-terraform@v2
-
-#     - name: Configure AWS Credentials
-#       uses: aws-actions/configure-aws-credentials@v1
-#       with:
-#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} 
-#         aws-region: us-east-1
-
-#       #  terraform_wrapper: false
-#     - name: Terraform Init
-#       id: init
-#       run: 
-#         terraform init -reconfigure
-#         -backend-config="bucket = "s3-for-assignment""
-#         -backend-config="key="terraform.tfstate""
-#         -backend-config="dynamodb_table = "NehLata-table""
-#         -backend-config="encrypt=true"
-#         #  rm -rf .terraform
-#         #  terraform init -backend-config-config.remote
-
-
-#     - name: terraform plan
-#       id: plan
-#       run:
-#          terraform plan -var-file="terraform.tfvars"
-
-#     - name: terraform Apply
-#       id: apply
-#       run:
-#          terraform apply -auto-approve
-
-
-# # name: 'Terrform'
-
-# # on: 
-# #   push: 
-# #     branches :
-# #     - master
-
-# # jobs:
-# #   terraform:
-# #     name: 'Terraform'
-# #     runs-on: ubuntu-latest
-
-# #     steps:
-# #     - uses: actions/checkout@v3
-# #     - uses: hashicorp/setup-terraform@v2
-
-# #     - name: Configure AWS Credentials
-# #       uses: aws-actions/configure-aws-credentials@v1
-# #       with:
-# #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-# #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} add token in secrets
-# #         aws-region: us-east-1
-# #         # role-to-assume: my-github-actions-role
-# #         # role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-# #         # role-duration-seconds: 1200
-# #         # role-session-name: MySessionName
-# #     - name: terraform init
-
-        
-
-# #     - run: terraform init
-
-# #     - id: plan
-# #       run: terraform plan -no-color
-
-# #     - run: echo ${{ steps.plan.outputs.stdout }}
-# #     - run: echo ${{ steps.plan.outputs.stderr }}
-# #     - run: echo ${{ steps.plan.outputs.exitcode }}
-
