@@ -34,7 +34,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} 
-        aws-region: ap-northeast-3      
+        aws-region: us-east-1      
 
     - name: tf-init
       id: init
@@ -51,10 +51,10 @@ jobs:
       run: 
         terraform plan -no-color
 
-    # - name: tf-apply
-    #   id: apply
-    #   run:
-    #     terraform apply -auto-approve
+    - name: tf-apply
+      id: apply
+      run:
+        terraform apply -auto-approve
 # name: 'Terrform'
 
 # on: 
